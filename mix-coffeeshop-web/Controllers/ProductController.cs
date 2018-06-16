@@ -13,10 +13,12 @@ namespace mix_coffeeshop_web.Controllers
     {
         public static IList<Product> products = new List<Product>
         {
-            new Product{ Id = 1, Name = "JphonX 256", Price = 49000 },
-            new Product{ Id = 2, Name = "Jphon8 128", Price = 27900 },
-            new Product{ Id = 3, Name = "iTable 100", Price = 12500 },
-            new Product{ Id = 4, Name = "Universe S9", Price = 35000 },
+            new Product{ Id = 1, Name = "Hot Coffee", Price = 50, ThumbURL = "/images/hot-coffee.png" },
+            new Product{ Id = 2, Name = "Cheese Cake", Price = 60, ThumbURL = "/images/cheese-cake.png" },
+            new Product{ Id = 3, Name = "Chocolate Cake", Price = 70, ThumbURL = "/images/chocolate-cake.png" },
+            new Product{ Id = 4, Name = "Crepe Cake", Price = 80, ThumbURL = "/images/crepe-cake.png" },
+            new Product{ Id = 5, Name = "Ice Coffee", Price = 90, ThumbURL = "/images/ice-coffee.png" },
+            new Product{ Id = 6, Name = "Panna Cotta", Price = 100, ThumbURL = "/images/panna-cotta.png" },
         };
 
         [HttpGet]
@@ -39,12 +41,14 @@ namespace mix_coffeeshop_web.Controllers
             return product;
         }
 
-        [HttpPut("{id}")]
-        public Product UpdateProduct(int id, [FromBody]Product product)
+        [HttpPut]
+        public Product UpdateProduct([FromBody]Product product)
         {
-            var selectedProduct = products.FirstOrDefault(it => it.Id == id);
+            var selectedProduct = products.FirstOrDefault(it => it.Id == product.Id);
             selectedProduct.Name = product.Name;
             selectedProduct.Price = product.Price;
+            selectedProduct.Desc = product.Desc;
+            selectedProduct.ThumbURL = product.ThumbURL;
             return selectedProduct;
         }
     }

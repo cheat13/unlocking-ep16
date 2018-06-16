@@ -22,17 +22,43 @@ namespace mix_coffeeshop_web.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult MenuManager()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            var api = new ProductController();
+            var products = api.Get();
+            return View(products);
         }
 
+        [HttpGet]
         public IActionResult AddItem()
         {
-            return View();
+            return View(new Product());
         }
+
+        [HttpPost]
+        public IActionResult AddItem(Product data)
+        {
+            var api = new ProductController();
+            api.CreateNewProduct(data);
+            return RedirectToAction("MenuManager");
+        }
+
+        [HttpGet]
+        public IActionResult EditItem(int id)
+        {
+            var api = new ProductController();
+            var selectedProduct = api.Get().FirstOrDefault(it=> it.Id == id);
+            return View(selectedProduct);
+        }
+
+        [HttpPost]
+        public IActionResult EditItem(Product data)
+        {
+            var api = new ProductController();
+            var selectedProduct = api.UpdateProduct(data);
+            return RedirectToAction("MenuManager");
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

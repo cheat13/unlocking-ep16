@@ -38,7 +38,7 @@
                 <ul class="nav navbar-nav">
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a  asp-area="" asp-controller="Home" asp-action="Index">รายการสั่งซื้อ</a></li>
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="About">ประวัติการสั่งซื้อ</a></li>
-                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" || ViewContext.RouteData.Values["Action"].ToString() == "AddItem"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="Contact">จัดการเมนู</a></li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" || ViewContext.RouteData.Values["Action"].ToString() == "AddItem"? "active" : "")"><a asp-area="" asp-controller="Home" asp-action="MenuManager">จัดการเมนู</a></li>
                 </ul>
             </div>
         </div>
